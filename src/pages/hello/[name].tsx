@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-export default function Unknow() {
+export default function Hello() {
   const params =  useParams()
   const navigate = useNavigate()
   return (
