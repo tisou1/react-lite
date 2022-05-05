@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter as Router, useRoutes } from 'react-router-dom'
+import routes from '~react-pages'
+import 'uno.css'
 
-const root = ReactDOM.createRoot(document.querySelector('#root') as Element)
+
+const root = ReactDOM.createRoot(document.querySelector('#root')!)
 
 const App = () => {
   return (
-    <div>aaasdasdp</div>
+    <Suspense>
+      {useRoutes(routes)}
+    </Suspense>
   )
 }
 
-root.render(<App />)
+root.render(
+  <React.StrictMode>
+    <Router>
+      <App />
+    </Router>
+  </React.StrictMode>
+)
