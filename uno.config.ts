@@ -15,8 +15,12 @@ export default defineConfig({
     presetUno(),
     presetAttributify(),
     presetIcons({
+      // prefix: 's-',//图表前缀
       scale: 1.2,
       warn: true,
+      extraProperties: {
+        display: 'inline-block'
+      }
     }),
   ],
 })
