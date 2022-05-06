@@ -1,19 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import useLocalStorage from './useLocalStorage'
 
-function judgeDark () {
+function getSystemTheme () {
+  if(typeof window === 'undefined') return
   const themeMedia = window.matchMedia('(prefers-color-scheme: dark)').matches
-  return themeMedia
+  return themeMedia 
 }
 
-export default function useDark(): [boolean, () => void] {
-  const [isDark, setIsDark] = useState(() => judgeDark())
+type Theme = 'dark' | 'light' | 'auto'
 
-  //html类名,本地存储都要修改
-  const trigger = () => {
-    document.documentElement.classList.toggle(isDark ? 'light' : 'dark')
+export default function useDark(): {
+  isDark: boolean | undefined,
+  setDark: (value: Theme) => void,
+  toggleDark: () => void
+} {
+  const [theme, setTheme] = useLocalStorage('si-theme','auto')
+  const isDark = theme === 'auto' ? getSystemTheme() : theme === 'dark'
 
-    setIsDark(!isDark)
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark)
+  },[isDark])
+
+  const setDark = (value: Theme) => {
+    setTheme(value)
   }
 
-  return [isDark, trigger]
+  const toggleDark = () => {
+    setTheme(isDark ? 'light' : 'dark')
+  }
+
+  return {
+    isDark,
+    setDark,
+    toggleDark
+  }
 }

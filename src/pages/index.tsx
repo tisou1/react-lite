@@ -5,7 +5,7 @@ import { useDark } from '../hooks'
 function Index() {
   const [value, setValue] = useState('')
   const navigate = useNavigate()
-  const [isDark, triggerDark] = useDark()
+  const { isDark, toggleDark } = useDark()
   console.log(isDark);
   const go = () => {
     if(value)
@@ -25,10 +25,10 @@ function Index() {
         <button className='btn' onClick={go}>go</button>
       </div>
       <div className='text-center py-6 flex justify-center'>
-        <div onClick={triggerDark}>
+        <div onClick={toggleDark}>
           {
             isDark 
-            ?  <span className='i-carbon-moon' ></span>
+            ?  <span className='i-carbon-moon text-gray-200' ></span>
             :  <span className='i-carbon-sun' ></span>
           }
         </div>
