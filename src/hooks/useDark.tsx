@@ -18,6 +18,7 @@ export default function useDark(): {
   const isDark = theme === 'auto' ? getSystemTheme() : theme === 'dark'
 
   useEffect(() => {
+    //isDark将会添加'dark'类名, 为false将会清除'dark'类名'
     document.documentElement.classList.toggle('dark', isDark)
   },[isDark])
 

@@ -7,7 +7,7 @@ type parserOptions<T> =
     serializer: (value: T) => string
     deserializer: (value: string) => T
   }
-
+/**TODO 序列化存储的方式 改变 */
 export default function useLocalStorage<T>(
   key: string,
   initialValue?: T,
