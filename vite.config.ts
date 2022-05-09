@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import * as path from 'path'
 import { defineConfig } from 'vite'
 //热更新模块插件
@@ -17,5 +19,8 @@ export default defineConfig({
     react(),
     Unocss(),
     Pages(),
-  ]
+  ],
+  test: {
+    include: ['test/**/*.test.{ts,js}','src/**/*.ts'],
+  }
 })
