@@ -21,6 +21,7 @@ export default defineConfig({
     Pages(),
   ],
   test: {
+    environment: 'jsdom',
     include: ['test/**/*.test.{ts,js}','src/**/*.ts'],
   }
 })
