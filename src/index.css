@@ -1,3 +1,7 @@
+html{
+  color: #b5b1b1;
+}
 html.dark{
-  background: #121212;
+  background: #222222;
+  color: #FAFAFA60;
 }
