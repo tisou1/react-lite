@@ -13,7 +13,6 @@ const App = () => {
   return (
     <Suspense>
       {useRoutes(routes)}
-      <Footer />
     </Suspense>
   )
 }
@@ -24,5 +23,6 @@ root.render(
       <App />
       <ClickToComponent />
     </Router>
+    <Footer />
   </React.StrictMode>
 )
