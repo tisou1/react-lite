@@ -5,7 +5,7 @@ import { BrowserRouter as Router, useRoutes } from 'react-router-dom'
 import routes from '~react-pages'
 import './index.css'
 import 'uno.css'
-
+import Footer from './components/footer'
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
 
@@ -13,6 +13,7 @@ const App = () => {
   return (
     <Suspense>
       {useRoutes(routes)}
+      <Footer />
     </Suspense>
   )
 }
