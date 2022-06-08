@@ -21,8 +21,10 @@
         "@typescript-eslint"
     ],
     "rules": {
-        // "quotes": ["warn", "single"],
+        "quotes": ["warn", "single"],
         "semi": ["warn", "never"],
-        "indent": ["error", 2]
-    }
+        "indent": ["error", 2],
+        "no-console": ["warn", { "allow": ["warn"] }]
+    },
+    "ignorePatterns": ["node_modules/", "dist/", "build/", "coverage/"]
 }

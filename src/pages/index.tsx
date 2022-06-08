@@ -1,9 +1,8 @@
 import React,{ useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDark } from '../hooks'
 
 function Index() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('')
   const navigate = useNavigate()
   const go = () => {
     if(value)
@@ -13,7 +12,7 @@ function Index() {
     <div className='text-center'>
       <p className='text-gray-400 dark:text-gray-200/50'>输入你的花名:</p>
       <input 
-        type='text' 
+        type="text" 
         className='p-2 outline-none active:outline-none border border-gray-200 dark:border-gray-700' 
         value={value} 
         onChange={(e) => setValue(e.target.value)}/>
