@@ -8,7 +8,6 @@ import 'uno.css'
 import Footer from './components/footer'
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
-
 const App = () => {
   return (
     <Suspense>

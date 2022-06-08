@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useDark } from '../hooks'
 
 function Index() {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
   const navigate = useNavigate()
-  const { isDark, toggleDark } = useDark()
   const go = () => {
     if(value)
       navigate(`/hello/${encodeURIComponent(value)}`)
