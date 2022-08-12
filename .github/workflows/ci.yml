@@ -4,7 +4,7 @@ on: # 定义触发action的事件
     branches: [ main ]  #推送到main分支
   
 jobs:
-  Test code:
+  deploy-code:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
