@@ -14,10 +14,10 @@ jobs:
           node-version: 16.x
           cache: pnpm
       
-      - name install deps
+      - name: install deps
         run: pnpm install #安装依赖
 
-      - name test
+      - name: test
         run: pnpm test
 
       # - name link
