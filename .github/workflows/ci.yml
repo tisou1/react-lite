@@ -26,7 +26,7 @@ jobs:
         run: pnpm build
       
       - name: copy dist file by scp command 
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.0.1
         # uses: easingthemes/ssh-deploy@v2.2.11
         with: 
           host: ${{ secrets.HOST_ADDRESS }}   #主机地址
