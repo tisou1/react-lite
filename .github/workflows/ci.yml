@@ -25,7 +25,7 @@ jobs:
       - name: build 
         run: pnpm build
       
-      - name: copy dist file by scp command
+      - name: copy dist file by scp command 
         uses: appleboy/scp-action@master
         # uses: easingthemes/ssh-deploy@v2.2.11
         with: 
