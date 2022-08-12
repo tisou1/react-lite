@@ -27,7 +27,7 @@ jobs:
       
       - name: copy dist file by scp command
         uses: appleboy/scp-action@v0.0.1
-        with:
+        with: 
           host: ${{ secrets.HOST_ADDRESS }}   #主机地址
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWD }}
