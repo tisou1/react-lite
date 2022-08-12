@@ -1,0 +1,25 @@
+name: deploy this repo
+on: # 定义触发action的事件
+  push:
+    branches: [ main ]  #推送到main分支
+  
+jobs:
+  Test code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: pnpm
+      
+      - name install deps
+        run: pnpm install #安装依赖
+
+      - name test
+        run: pnpm test
+
+      # - name link
+      #   run: pnpm lint
+      
