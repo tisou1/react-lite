@@ -9,7 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v3
+
+      - name: install node
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: pnpm
@@ -19,6 +21,19 @@ jobs:
 
       - name: test
         run: pnpm test
+
+      - name: build 
+        run: pnpm build
+      
+      - name: copy dist file by scp command
+        uses: appleboy/scp-action@v0.0.1
+        with:
+          host: ${{ secrets.HOST_ADDRESS }}   #主机地址
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWD }}
+          port: 22
+          source: "dist"
+          target: ${{ secrets.CATALOG }}
 
       # - name link
       #   run: pnpm lint
