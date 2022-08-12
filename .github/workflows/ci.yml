@@ -28,7 +28,7 @@ jobs:
       - name: copy dist file by scp command 
         #uses: appleboy/scp-action@v0.0.1  # 这里使用v0.0.1有问题
         uses: appleboy/scp-action@master  # 使用master可以
-        # uses: easingthemes/ssh-deploy@v2.2.11
+        # uses: easingthemes/ssh-deploy@v2.2.11 
         with: 
           host: ${{ secrets.HOST_ADDRESS }}   #主机地址
           username: ${{ secrets.USERNAME }}
