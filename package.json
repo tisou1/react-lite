@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@7.9.0",
+  "packageManager": "pnpm@7.12.2",
   "dependencies": {
     "click-to-react-component": "^1.0.8",
     "react": "^18.2.0",
