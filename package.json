@@ -15,30 +15,30 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@8.0.0",
+  "packageManager": "pnpm@8.3.1",
   "dependencies": {
     "click-to-react-component": "^1.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.16",
-    "@types/node": "^18.15.11",
-    "@types/react": "^18.0.31",
+    "@types/node": "^18.15.12",
+    "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "@vitejs/plugin-react": "^3.1.0",
     "@vitejs/plugin-react-swc": "^3.3.0",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "jsdom": "^21.1.1",
-    "pnpm": "^8.0.0",
-    "typescript": "^5.0.2",
-    "unocss": "^0.50.6",
-    "vite": "^4.2.1",
+    "pnpm": "^8.3.1",
+    "typescript": "^5.0.4",
+    "unocss": "^0.51.5",
+    "vite": "^4.3.0",
     "vite-plugin-pages": "^0.29.0",
-    "vitest": "^0.29.8"
+    "vitest": "^0.30.1"
   }
 }
