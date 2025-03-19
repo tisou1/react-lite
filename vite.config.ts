@@ -1,14 +1,14 @@
 /// <reference types="vitest" />
 
-import * as path from 'path'
-import { defineConfig } from 'vite'
-//热更新模块插件
+import * as path from 'node:path'
+// 热更新模块插件
 // import react from '@vitejs/plugin-react'
 import react from '@vitejs/plugin-react-swc'
-//文件路由
-import Pages from 'vite-plugin-pages'
 import Unocss from 'unocss/vite'
-//click to component
+import { defineConfig } from 'vite'
+// 文件路由
+import Pages from 'vite-plugin-pages'
+// click to component
 export default defineConfig({
   resolve: {
     alias: {

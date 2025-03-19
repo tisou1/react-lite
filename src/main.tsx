@@ -1,14 +1,14 @@
+import { ClickToComponent } from 'click-to-react-component'
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import { ClickToComponent } from 'click-to-react-component'
 import { BrowserRouter as Router, useRoutes } from 'react-router-dom'
 import routes from '~react-pages'
+import Footer from './components/footer'
 import './index.css'
 import 'uno.css'
-import Footer from './components/footer'
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
-const App = () => {
+function App() {
   return (
     <Suspense>
       {useRoutes(routes)}
@@ -23,5 +23,5 @@ root.render(
       <ClickToComponent />
     </Router>
     <Footer />
-  </React.StrictMode>
+  </React.StrictMode>,
 )

@@ -1,9 +1,4 @@
-import {
-  defineConfig,
-  presetAttributify,
-  presetIcons,
-  presetUno,
-} from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
 
@@ -12,15 +7,18 @@ export default defineConfig({
     ['icon-btn', 'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
   ],
   presets: [
-    presetUno(),
+    presetWind3(),
     presetAttributify(),
     presetIcons({
       // prefix: 's-',//图表前缀
       scale: 1.2,
       warn: true,
       extraProperties: {
-        display: 'inline-block'
-      }
+        display: 'inline-block',
+      },
     }),
+  ],
+  transformers: [
+    transformerVariantGroup(),
   ],
 })
