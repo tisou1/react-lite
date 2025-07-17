@@ -3,7 +3,7 @@
 ## 特点
 - [react18](https://reactjs.org/),[vite](https://vitejs.dev/),[pnpm](https://pnpm.js.org/)
 
-## 主题切换-不适用state版本
+## 主题切换-不使用state版本
 
 ```tsx
 import { useEffect, useState } from 'react'
