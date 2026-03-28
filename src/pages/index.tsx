@@ -30,7 +30,8 @@ function Index() {
         className="mt-3 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-center text-base text-neutral-900 outline-none transition focus:border-neutral-900 focus:ring-4 focus:ring-neutral-200 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50 dark:focus:border-neutral-100 dark:focus:ring-neutral-800"
         value={value}
         onChange={e => setValue(e.target.value)}
-        placeholder="例如：Codex"
+        placeholder="例如：tisou1"
+        autoComplete='off'
       />
 
       <div className="mt-4">
