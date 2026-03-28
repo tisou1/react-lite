@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import useLocalStorage from './useLocalStorage'
 
 function getSystemTheme() {
   if (typeof window === 'undefined')
@@ -22,21 +21,16 @@ export default function useDark(): {
   setDark: (value: Theme) => void
   toggleDark: () => void
 } {
-  // const [theme, setTheme] = useLocalStorage('si-theme', 'auto')
   const [theme, setTheme] = useState(getTheme())
 
   useEffect(() => {
-    // isDark将会添加'dark'类名, 为false将会清除'dark'类名'
     document.documentElement.classList.toggle('dark', theme === 'dark')
     localStorage.setItem('si-theme', theme as string)
-  }, [])
+  }, [theme])
 
   const setDark = (value: Theme) => {
-    // 更新类名
     document.documentElement.classList.toggle('dark', value === 'dark')
-    // 更新本地存储
     localStorage.setItem('si-theme', value)
-    // 更新stater
     setTheme(value)
   }
 

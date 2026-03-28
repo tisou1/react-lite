@@ -5,8 +5,9 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "useDefineForClassFields": true,
     "baseUrl": "./",
+    "ignoreDeprecations": "6.0",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "paths": {
       "~/*": ["src/*"]
     },
@@ -15,7 +16,6 @@
     "strict": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true

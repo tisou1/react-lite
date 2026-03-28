@@ -2,13 +2,11 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 
 function noop() { }
-type parserOptions<T> =
-  | { raw: true }
-  | {
-    raw: false
-    serializer: (value: T) => string
-    deserializer: (value: string) => T
-  }
+type parserOptions<T> = { raw: true } | {
+  raw: false
+  serializer: (value: T) => string
+  deserializer: (value: string) => T
+}
 /** TODO 序列化存储的方式 改变 */
 export default function useLocalStorage<T>(
   key: string,
