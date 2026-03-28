@@ -21,30 +21,29 @@ export default function UIPage() {
             shadcn/ui
           </span>
           <CardTitle className="mt-3 text-balance text-4xl font-semibold tracking-tight text-black dark:text-white sm:text-5xl">
-            Component system ready
+            组件系统已经接入
           </CardTitle>
           <CardDescription className="max-w-2xl text-sm leading-6 text-neutral-600 dark:text-neutral-300">
-            This scaffold now includes shadcn/ui configuration, generated source components, and the shared
-            utility helpers needed to keep new UI work consistent.
+            这个脚手架已经包含 shadcn/ui 配置、生成后的组件源码，以及保持样式一致所需的公共工具函数。
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6 md:grid-cols-2">
           <div className="space-y-3">
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
-              Example input
+              输入框示例
             </p>
-            <Input placeholder="Search, create, or wire this into a form" className="h-11 rounded-xl bg-white/80 dark:bg-black/20" />
+            <Input placeholder="搜索、创建，或者把它接到你的表单里" className="h-11 rounded-xl bg-white/80 dark:bg-black/20" />
           </div>
           <div className="space-y-3">
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
-              Example actions
+              操作按钮示例
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button>Primary action</Button>
-              <Button variant="outline">Secondary action</Button>
+              <Button>主按钮</Button>
+              <Button variant="outline">次按钮</Button>
               <Button variant="ghost" asChild>
                 <Link to="/">
-                  Back home
+                  返回首页
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
@@ -52,11 +51,11 @@ export default function UIPage() {
           </div>
         </CardContent>
         <CardFooter className="justify-center bg-transparent text-sm text-neutral-500 dark:text-neutral-400">
-          Visit
+          访问
           {' '}
           <code>/ui</code>
           {' '}
-          to extend this starter with more shadcn components.
+          可以继续在这个脚手架里扩展更多 shadcn 组件。
         </CardFooter>
       </Card>
     </div>

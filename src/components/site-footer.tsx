@@ -1,5 +1,6 @@
 import { MoonStar, SunMedium } from 'lucide-react'
 import React from 'react'
+import { siGithub } from 'simple-icons'
 import { useDark } from '../hooks'
 
 export default function SiteFooter() {
@@ -56,7 +57,14 @@ export default function SiteFooter() {
           aria-label="Open GitHub repository"
           className="icon-btn rounded-full border border-transparent hover:border-black/10 dark:hover:border-white/10"
         >
-          <span className="text-xs font-semibold tracking-[0.2em]">GH</span>
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="size-[18px]"
+            fill="currentColor"
+          >
+            <path d={siGithub.path} />
+          </svg>
         </a>
       </div>
     </div>
