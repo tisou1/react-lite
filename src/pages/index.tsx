@@ -31,7 +31,7 @@ function Index() {
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder="例如：tisou1"
-        autoComplete='off'
+        autoComplete="off"
       />
 
       <div className="mt-4">

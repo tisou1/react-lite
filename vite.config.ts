@@ -1,8 +1,9 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 
 import * as path from 'node:path'
+import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
+import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
 
@@ -12,12 +13,10 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
+  base: 'react-lite',
   plugins: [
-    react({
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
-    }),
+    react(),
+    babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     Pages(),
   ],
