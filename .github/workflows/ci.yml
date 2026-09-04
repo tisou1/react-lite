@@ -1,0 +1,42 @@
+name: deploy this repo
+on: # 定义触发action的事件
+  push:
+    branches: [ main ]  #推送到main分支
+  
+jobs:
+  deploy-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: pnpm
+      
+      - name: install deps
+        run: pnpm install #安装依赖
+
+      - name: test
+        run: pnpm test
+
+      - name: build 
+        run: pnpm build
+      
+      - name: copy dist file by scp command   # 推送到服务器上
+        #uses: appleboy/scp-action@v0.0.1  # 这里使用v0.0.1有问题
+        uses: appleboy/scp-action@master  # 使用master可以
+        # uses: easingthemes/ssh-deploy@v2.2.11 
+        with: 
+          host: ${{ secrets.HOST_ADDRESS }}   #主机地址
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWD }}
+          port: 22
+          source: "dist"
+          target: ${{ secrets.CATALOG }}
+
+      # - name link
+      #   run: pnpm lint
+      
