@@ -13,7 +13,7 @@ jobs:
       - name: install node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 24.x
           cache: pnpm
       
       - name: install deps
