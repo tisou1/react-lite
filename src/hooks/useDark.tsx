@@ -1,46 +1,17 @@
 import { useEffect, useState } from 'react'
 
-function getSystemTheme() {
-  if (typeof window === 'undefined')
-    return
-  const themeMedia = window.matchMedia('(prefers-color-scheme: dark)').matches
-  return themeMedia
-}
+const storageKey = 'si-theme'
 
-function getTheme() {
-  const theme = localStorage.getItem('si-theme')
-  if (!theme)
-    return getSystemTheme() ? 'dark' : 'light'
-  return theme
-}
-
-type Theme = 'dark' | 'light' | 'auto'
-
-export default function useDark(): {
-  isDark: boolean | undefined
-  setDark: (value: Theme) => void
-  toggleDark: () => void
-} {
-  const [theme, setTheme] = useState(getTheme())
+export default function useDark() {
+  const [isDark, setIsDark] = useState(() => localStorage.getItem(storageKey) === 'dark')
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark')
-    localStorage.setItem('si-theme', theme as string)
-  }, [theme])
-
-  const setDark = (value: Theme) => {
-    document.documentElement.classList.toggle('dark', value === 'dark')
-    localStorage.setItem('si-theme', value)
-    setTheme(value)
-  }
-
-  const toggleDark = () => {
-    setDark(theme === 'dark' ? 'light' : 'dark')
-  }
+    document.documentElement.classList.toggle('dark', isDark)
+    localStorage.setItem(storageKey, isDark ? 'dark' : 'light')
+  }, [isDark])
 
   return {
-    isDark: theme === 'dark',
-    setDark,
-    toggleDark,
+    isDark,
+    toggleDark: () => setIsDark(!isDark),
   }
 }

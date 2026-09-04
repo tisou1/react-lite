@@ -32,7 +32,7 @@ export default function UIPage() {
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
               输入框示例
             </p>
-            <Input placeholder="搜索、创建，或者把它接到你的表单里" className="h-11 rounded-xl bg-white/80 dark:bg-black/20" />
+            <Input placeholder="搜索、创建，或者把它接到你的表单里" className="h-11 rounded-xl" />
           </div>
           <div className="space-y-3">
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">

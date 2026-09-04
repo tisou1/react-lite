@@ -13,7 +13,6 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
-  base: 'react-lite',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

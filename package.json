@@ -9,12 +9,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite --port 3333 --open",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --base=/react-lite --outDir=dist",
     "preview": "vite preview",
     "test": "vitest run",
     "test:w": "vitest -u",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "deploy": "pnpm build && gh-pages -d dist"
   },
   "dependencies": {
     "@antfu/eslint-config": "^7.7.3",
