@@ -2,13 +2,13 @@ import type { Root } from 'react-dom/client'
 import { act, createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import SiteFooter from '../src/components/site-footer'
+import ThemeToggle from '../src/components/theme-toggle'
 
 vi.hoisted(() => {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
 })
 
-describe('site footer theme control', () => {
+describe('header theme control', () => {
   let container: HTMLDivElement
   let root: Root
 
@@ -31,7 +31,7 @@ describe('site footer theme control', () => {
 
     act(() => {
       root = createRoot(container)
-      root.render(createElement(SiteFooter))
+      root.render(createElement(ThemeToggle))
     })
 
     const button = container.querySelector('button')
@@ -54,7 +54,7 @@ describe('site footer theme control', () => {
 
     act(() => {
       root = createRoot(container)
-      root.render(createElement(SiteFooter))
+      root.render(createElement(ThemeToggle))
     })
 
     expect(() => {

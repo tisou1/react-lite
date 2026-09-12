@@ -1,102 +1,78 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 
-function noop() { }
-type parserOptions<T> = { raw: true } | {
-  raw: false
-  serializer: (value: T) => string
-  deserializer: (value: string) => T
+type StorageOperation = 'read' | 'write' | 'remove'
+type ParserOptions<T> = ({ raw: true } | {
+  raw?: false
+  serializer?: (value: T) => string
+  deserializer?: (value: string) => T
+}) & {
+  onError?: (error: unknown, operation: StorageOperation) => void
 }
-/** TODO 序列化存储的方式 改变 */
+
 export default function useLocalStorage<T>(
   key: string,
   initialValue?: T,
-  options?: parserOptions<T>,
+  options?: ParserOptions<T>,
 ): [T | undefined, Dispatch<SetStateAction<T | undefined>>, () => void] {
-  // 判断是不是浏览器环境
-  if (typeof window === 'undefined') {
-    return [initialValue, noop, noop]
-  }
-  // 判断有没有传入key
-  if (!key) {
-    throw new Error('useLocalStorage key may not be falsy')
-  }
+  const config = useRef({ key, initialValue, options })
+  config.current = { key, initialValue, options }
 
-  // 反序列化,将字符串转换为对象
-  const deserializer = options
-    ? options.raw
-      ? (value: string) => value
-      : options.deserializer
-    : JSON.parse
-
-  // 序列化
-  const initializer = useRef((key: string) => {
+  const read = () => {
     try {
-      const serializer = options ? (options.raw ? String : options.serializer) : JSON.stringify
+      const stored = localStorage.getItem(key)
+      const value = stored === null
+        ? initialValue
+        : options?.raw ? stored as T : (options?.deserializer ?? JSON.parse)(stored) as T
+      return { key, value, missing: stored === null, error: undefined as unknown }
+    }
+    catch (error) {
+      return { key, value: initialValue, missing: false, error }
+    }
+  }
 
-      const localStorageValue = localStorage.getItem(key)
-      if (localStorageValue !== null) {
-        return deserializer(localStorageValue)
+  const [snapshot, setSnapshot] = useState(read)
+  const current = useRef(snapshot)
+  const persist = useCallback((value: T | undefined) => {
+    const { key, options } = config.current
+    try {
+      if (value === undefined) {
+        localStorage.removeItem(key)
       }
       else {
-        initialValue && localStorage.setItem(key, serializer(initialValue))
-
-        return initialValue
+        const encoded = options?.raw ? String(value) : (options?.serializer ?? JSON.stringify)(value)
+        localStorage.setItem(key, encoded)
       }
     }
-    catch {
-      //
-      return initialValue
+    catch (error) {
+      options?.onError?.(error, value === undefined ? 'remove' : 'write')
     }
-  })
+  }, [])
 
-  const [state, setState] = useState<T | undefined>(() => initializer.current(key))
-
-  useLayoutEffect(() => setState(initializer.current(key)), [key])
-
-  const set: Dispatch<SetStateAction<T | undefined>> = useCallback((valOrFunc) => {
-    try {
-      const newState = (typeof valOrFunc === 'function' ? (valOrFunc as (prevState: T | undefined) => T | undefined)(state) : valOrFunc) as T | undefined
-
-      if (typeof newState === 'undefined')
-        return
-
-      let value: string
-      // l
-      if (options) {
-        if (options.raw) {
-          if (typeof newState === 'string')
-            value = newState
-          else value = JSON.stringify(newState)
-        }
-        else if (options.serializer) {
-          value = options.serializer(newState)
-        }
-        else {
-          value = JSON.stringify(newState)
-        }
-      }
-      else {
-        value = JSON.stringify(newState)
-      }
-
-      localStorage.setItem(key, value)
-      setState(deserializer(value))
+  useLayoutEffect(() => {
+    if (current.current.key !== key) {
+      current.current = read()
+      setSnapshot(current.current)
     }
-    catch {
-
+    if (current.current.error)
+      config.current.options?.onError?.(current.current.error, 'read')
+    if (current.current.missing) {
+      current.current.missing = false
+      if (current.current.value !== undefined)
+        persist(current.current.value)
     }
-  }, [key, setState])
+  }, [key, persist])
 
-  const remove = useCallback(() => {
-    try {
-      localStorage.removeItem(key)
-      setState(undefined)
-    }
-    catch {
+  const set: Dispatch<SetStateAction<T | undefined>> = useCallback((valueOrUpdater) => {
+    const value = typeof valueOrUpdater === 'function'
+      ? (valueOrUpdater as (previous: T | undefined) => T | undefined)(current.current.value)
+      : valueOrUpdater
+    const next = { key: config.current.key, value, missing: false, error: undefined }
+    current.current = next
+    setSnapshot(next)
+    persist(value)
+  }, [persist])
+  const remove = useCallback(() => set(undefined), [set])
 
-    }
-  }, [key, setState])
-
-  return [state, set, remove]
+  return [snapshot.value, set, remove]
 }

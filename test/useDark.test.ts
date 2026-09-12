@@ -66,4 +66,20 @@ describe('useDark', () => {
 
     expect(onReady.mock.lastCall?.[0].isDark).toBe(false)
   })
+
+  it('keeps switching when local storage is unavailable', () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('blocked')
+    })
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('blocked')
+    })
+    const onReady = vi.fn()
+    act(() => {
+      root = createRoot(container)
+      root.render(createElement(ThemeHarness, { onReady }))
+    })
+    act(() => onReady.mock.lastCall?.[0].toggleDark())
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
+  })
 })

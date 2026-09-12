@@ -1,40 +1,19 @@
-import { MoonStar, SunMedium } from 'lucide-react'
-import React from 'react'
-import { siGithub } from 'simple-icons'
-import { useDark } from '../hooks'
+import { Link } from 'react-router-dom'
 
 export default function SiteFooter() {
-  const { isDark, toggleDark } = useDark()
-
   return (
-    <div className="flex justify-center py-8">
-      <div className="flex items-center gap-3 rounded-full border border-black/10 bg-white/80 px-4 py-2 shadow-sm shadow-black/5 backdrop-blur dark:border-white/10 dark:bg-white/5">
-        <button
-          type="button"
-          aria-label={isDark ? '切换到亮色模式' : '切换到暗色模式'}
-          aria-pressed={isDark}
-          className="icon-btn rounded-full border border-transparent hover:border-black/10 dark:hover:border-white/10"
-          onClick={toggleDark}
-        >
-          {isDark ? <MoonStar size={18} /> : <SunMedium size={18} />}
-        </button>
-        <a
-          href="https://github.com/tisou1/react-lite"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Open GitHub repository"
-          className="icon-btn rounded-full border border-transparent hover:border-black/10 dark:hover:border-white/10"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            className="size-[18px]"
-            fill="currentColor"
-          >
-            <path d={siGithub.path} />
-          </svg>
-        </a>
+    <footer className="mt-auto border-t">
+      <div className="page-shell flex flex-wrap items-center justify-between gap-3 py-6 text-xs text-muted-foreground">
+        <p>
+          <span className="font-heading font-medium text-foreground">React Lite</span>
+          <span className="mx-2">/</span>
+          从一个小想法开始。
+        </p>
+        <div className="flex gap-5">
+          <Link to="/ui" className="hover:text-foreground">探索组件</Link>
+          <Link to="/tasks" className="hover:text-foreground">体验示例</Link>
+        </div>
       </div>
-    </div>
+    </footer>
   )
 }

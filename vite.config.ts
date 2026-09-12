@@ -32,8 +32,8 @@ function spaGitHubPages404(): Plugin {
 
 // dev 挂载在根路径，base 用默认 '/'；
 // build 输出部署到 GitHub Pages 项目页（/react-lite/），base 必须与仓库子路径一致。
-export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/react-lite/' : '/',
+export default defineConfig(({ command, isPreview }) => ({
+  base: command === 'build' || isPreview ? '/react-lite/' : '/',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
